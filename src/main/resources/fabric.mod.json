@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "aim-assist",
+	"version": "${version}",
+	"name": "Aim Assist Mod",
+	"description": "A mod that provides aim assist for targeting entities in Minecraft.",
+	"authors": [
+		"Frank1o3"
+	],
+	"contact": {
+		"homepage": "https://example.com",
+		"sources": "https://github.com/Frank1o3/aim-assist"
+	},
+	"license": "CC0 1.0",
+	"icon": "assets/aim-assist/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"aimmod.assist.AimAssistClient"
+		],
+		"modmenu": [
+			"aimmod.assist.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"aim-assist.mixins.json",
+		"aim-assist.client.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"fabric": "*",
+		"minecraft": "1.21.6",
+		"java": ">=21",
+		"cloth-config": ">=19.0.147+fabric",
+		"modmenu": ">=11.0.3"
+	}
+}
