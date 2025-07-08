@@ -59,6 +59,8 @@ public class AimAssistClient implements ClientModInitializer {
             float pull = BowItem.getPullProgress(mc.player.getItemUseTime());
             Vec3d aimDir = Ballistics.solve(mc.player, target, pull, cfg);
             if (aimDir != null) {
+                Vec3d s = mc.player.getEyePos(); // shooter pos
+
                 float curYaw = mc.player.getYaw();
                 float curPitch = mc.player.getPitch();
                 float tgtYaw = (float) Math.toDegrees(Math.atan2(-aimDir.x, aimDir.z));
@@ -72,7 +74,7 @@ public class AimAssistClient implements ClientModInitializer {
                 mc.player.setPitch(curPitch + dPitch);
                 if (cfg.showGhostMarker) {
                     GhostRenderer.INSTANCE.setGhostPos(
-                            mc.player.getEyePos().add(aimDir.normalize()));
+                            mc.player.getEyePos().add(aimDir.normalize().multiply(s.distanceTo(aimDir))));
                 }
             }
         }
